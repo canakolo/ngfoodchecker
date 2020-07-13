@@ -3,6 +3,25 @@
     debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
     debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「献立登録確認ページ');
     debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+
+    $postFoodName = array(
+      '0' => '',
+      '1' => '卵',
+      '2' => '小麦',
+      '3' => '乳',
+      '4' => 'えび',
+      '5' => 'いか',
+      '6' => 'さけ',
+      '7' => 'さば',
+      '8' => '大豆',
+      '9' => 'ごま',
+      '10' => '鶏肉',
+      '11' => '豚肉',
+      '12' => '牛肉',
+      '13' => 'りんご',
+      '14' => 'その他',
+    );
+
     if(!empty($_POST['register'])){
         debug('登録ボタンが押されました。');
         if(!empty($_POST)){
@@ -14,9 +33,6 @@
             $menu1_allergin4 = $_POST['menu1_allergin4'];
             $menu1_allergin5 = $_POST['menu1_allergin5'];
 
-
-
-            debug('メニュー１の中身はあります。');
             if(empty($err_msg)){
              debug('バリデーションOKです');
              try{
@@ -57,60 +73,44 @@
         <?php require('header.php'); ?>
         <section id="main">
             <div id="contents" class="site-width normal-background">
-                <form action="" method="post" class="form">
-                    <label class="">
-                        入力した内容を確認し、登録してください。
-                        <br />
-                        <input type="textarea" name="surve_date1" value="<?php if(!empty($_POST['surve_date1'])) echo $_POST['surve_date1']; ?>">
-                    </label>
-                    <div class="area-msg">
-                    </div>
-
-                    <div class="menu1">
-                        <label class="">
-                            献立１の名前
-                            <input type="text" name="menu1" value="<?php if(!empty($_POST['menu1'])) echo $_POST['menu1']; ?>">
-                            </br>
-                        </label>
-
-                        <label>
-                            アレルギー成分１：
-                            <input type="text" name="menu1_allergin1" value="<?php if(!empty($_POST['menu1_allergin1'])) echo $_POST['menu1_allergin1']; ?>">
-                            </br>
-                        </label>
-
-                        <label>
-                            アレルギー成分２：
-                            <input type="text" name="menu1_allergin2" value="<?php if(!empty($_POST['menu1_allergin2'])) echo $_POST['menu1_allergin2']; ?>">
-                            </br>
-                        </label>
-
-                        <label>
-                            アレルギー成分３：
-                            <input type="text" name="menu1_allergin3" value="<?php if(!empty($_POST['menu1_allergin3'])) echo $_POST['menu1_allergin3']; ?>">
-                            </br>
-                        </label>
-
-                        <label>
-                            アレルギー成分４：
-                            <input type="text" name="menu1_allergin4" value="<?php if(!empty($_POST['menu1_allergin4'])) echo $_POST['menu1_allergin4']; ?>">
-                            </br>
-                        </label>
-
-                        <label>
-                            アレルギー成分５：
-                            <input type="text" name="menu1_allergin5" value="<?php if(!empty($_POST['menu1_allergin5'])) echo $_POST['menu1_allergin5']; ?>">
-                            </br>
-                        </label>
-                    </div>
-
-                    <div class="btn-container">
-                            <input type="submit" name="register" class="btn btn-mid" value="登録する">
-                    </div>
-                    <div class="btn-container">
-                        <input type="button" onclick="history.back()" value="戻る">
-                    </div>
-                </form>
+                <label class="">
+                    入力した内容を確認し、登録してください。
+                </label>
+                <table class="menu1">
+                    <tr>
+                      <td><?php echo $_POST['surve_date1']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>献立１の名前：</td>
+                        <td><?php echo $_POST['menu1']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>アレルギー成分１：</td>
+                        <td><?php echo $postFoodName[$_POST['menu1_allergin1']]; ?></td>
+                    </tr>
+                    <tr>
+                        <td>アレルギー成分２：</td>
+                        <td><?php echo $postFoodName[$_POST['menu1_allergin2']]; ?></td>
+                    </tr>
+                    <tr>
+                        <td>アレルギー成分３：</td>
+                        <td><?php echo $postFoodName[$_POST['menu1_allergin3']]; ?></td>
+                    </tr>
+                    <tr>
+                        <td>アレルギー成分４：</td>
+                        <td><?php echo $postFoodName[$_POST['menu1_allergin4']]; ?></td>
+                    </tr>
+                    <tr>
+                        <td>アレルギー成分５：</td>
+                        <td><?php echo $postFoodName[$_POST['menu1_allergin5']]; ?></td>
+                    </tr>
+                </table>
+                <div class="btn-container">
+                    <input type="submit" name="register" class="btn btn-mid" value="登録する">
+                </div>
+                <div class="btn-container">
+                    <input type="button" onclick="history.back()" value="戻る">
+                </div>
             </div>
         </section>
     </body>
